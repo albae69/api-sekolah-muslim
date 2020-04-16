@@ -4,10 +4,10 @@ if (process.env.NODE_ENV !== 'production') {
 
 const express = require('express');
 const bodyParser = require('body-parser');
-
-// parse env
+const cors = require('cors');
 
 const app = express();
+app.use(cors());
 app.use(bodyParser.urlencoded({extended: true}));
 
 // database
@@ -22,6 +22,7 @@ db.on('error', error => console.log(error));
 db.once('open', () => console.log('Connected To Database'));
 
 // routes
+
 const routes = require('./routes/');
 
 app.get('/', (req, res) => {
